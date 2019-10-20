@@ -58,6 +58,7 @@ values."
      auto-completion
      better-defaults
      git
+     github
      react
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
