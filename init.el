@@ -52,6 +52,7 @@ values."
      (spell-checking :variables enable-flyspell-auto-completion nil)
      syntax-checking
      emacs-lisp
+     docker
      bibtex
      yaml
      sql
