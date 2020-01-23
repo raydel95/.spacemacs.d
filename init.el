@@ -61,14 +61,17 @@ values."
      git
      github
      react
+     restclient
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
+
+     prettier
      (typescript :variables
                  typescript-fmt-on-save t
                  typescript-backend 'tide
-                 typescript-linter 'tslint
-                 typescript-fmt-tool 'prettier)
+                 typescript-fmt-tool 'prettier
+                 typescript-linter 'eslint)
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (markdown :variables markdown-live-preview-engine 'vmd)
      (latex :variables
@@ -90,7 +93,6 @@ values."
      html
      javascript
      web-beautify
-     prettier
      (treemacs :variables
                treemacs-use-follow-mode 'tag
                treemacs-use-filewatch-mode t
