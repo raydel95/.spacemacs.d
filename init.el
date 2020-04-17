@@ -27,80 +27,123 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
-     emacs-lisp
-     vimscript
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     imenu-list
-     helm
-     pdf
-     themes-megapack
-     (version-control :variables
-                      version-control-diff-side 'left
-                      version-control-diff-tool 'diff-hl
-                      version-control-global-margin t)
-     (spell-checking :variables enable-flyspell-auto-completion nil)
-     syntax-checking
-     emacs-lisp
-     docker
-     bibtex
-     yaml
-     sql
-     auto-completion
-     better-defaults
-     git
-     github
-     react
-     restclient
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
 
-     prettier
-     (typescript :variables
-                 typescript-fmt-on-save t
-                 typescript-backend 'tide
-                 typescript-fmt-tool 'prettier
-                 typescript-linter 'eslint)
+     auto-completion
+
+     better-defaults
+
+     bibtex
+
+     (c-c++ :variables
+            c-c++-default-mode-for-headers
+            'c++-mode
+            c-c++-enable-clang-support
+            t)
+
+     (clojure :variables
+              clojure-enable-fancify-symbols nil
+              clojure-enable-sayid t
+              clojure-enable-clj-refactor t
+              clojure-enable-linters
+              '(clj-kondo joker))
+
+     command-log docker
+
+     emacs-lisp
+
+     fasd
+
+     git
+
+     github
+
+     helm
+
+     html
+
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (markdown :variables markdown-live-preview-engine 'vmd)
+
+     imenu-list
+
+     javascript
+
+     (json :variables json-fmt-tool 'prettier)
+
      (latex :variables
             latex-build-command "LaTeX"
             latex-enable-folding t
             latex-enable-auto-fill t)
+
+     (markdown :variables markdown-live-preview-engine 'vmd)
+
+     multiple-cursors
+
      (org :variables
           org-enable-github-support t
           org-projectile-file "TODOs.org")
+
+     (osx :variables osx-dictionary-dictionary-choice "English")
+
+     pdf
+
+     prettier
+
+     (ranger :variables
+             ranger-show-preview t
+             ranger-show-hidden t
+             ranger-cleanup-eagerly t
+             ranger-cleanup-on-disable t
+             ranger-ignored-extensions '("mkv" "flv" "iso" "mp4"))
+
+     react
+
+     restclient
+
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
-            shell-default-position 'bottom
-            )
-     (clojure :variables clojure-enable-fancify-symbols t
-              clojure-enable-sayid t
-              clojure-enable-clj-refactor t
-              clojure-enable-linters '(clj-kondo joker))
-     html
-     javascript
-     web-beautify
+            shell-default-position 'bottom)
+
+     (spell-checking :variables enable-flyspell-auto-completion nil)
+
+     sql
+
+     syntax-checking
+
+     themes-megapack
+
      (treemacs :variables
                treemacs-use-follow-mode 'tag
                treemacs-use-filewatch-mode t
                treemacs-use-collapsed-directories 3
                treemacs-use-git-mode 'extended)
-     (osx :variables osx-dictionary-dictionary-choice "English")
-     (json :variables json-fmt-tool 'prettier)
-     )
+
+     (typescript :variables
+                 typescript-fmt-on-save t
+                 typescript-backend 'tide
+                 typescript-fmt-tool 'prettier
+                 typescript-linter 'eslint)
+
+     (version-control :variables
+                      version-control-diff-side 'left
+                      version-control-diff-tool 'diff-hl
+                      version-control-global-margin t)
+
+     vimscript
+
+     web-beautify
+
+     yaml)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -187,6 +230,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(smyx
+                         kaolin-ocean
                          cyberpunk
                          ujelly
                          odersky
@@ -330,7 +374,7 @@ values."
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -341,7 +385,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -356,6 +400,10 @@ values."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
+   ;; Run `spacemacs/prettify-org-buffer' when
+   ;; visiting README.org files of Spacemacs.
+   ;; (default nil)
+   dotspacemacs-pretty-docs t
    ))
 
 (defun dotspacemacs/user-init ()
@@ -398,6 +446,64 @@ you should place your code here."
   (set-face-attribute 'font-lock-builtin-face nil :weight 'bold)
   (set-face-attribute 'font-lock-preprocessor-face nil :weight 'bold)
   ;; Use Source Code Pro Nerd Font patched for mode-line to display more icons
-  ;; (set-face-attribute 'mode-line nil :font "SauceCodePro Nerd Font Bold")
+  (set-face-attribute 'mode-line nil :font "SauceCodePro Nerd Font Bold")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Version Control configuration - Git, etc
+  ;;
+  ;; diff-hl - diff hightlights in right gutter as you type
+  (diff-hl-flydiff-mode)
+  ;;
+  ;; Load in magithub features after magit package has loaded
+  (use-package magithub
+    :after magit
+    :config (magithub-feature-autoinject t))
+  ;;
+  ;; Use Spacemacs as the $EDITOR (or $GIT_EDITOR) for git commits messages
+  ;; when using git commit on the command line
+  (global-git-commit-mode t)
+
+
+  ;; Configure the position of evaluation result
+  ;; By default the result displays at the end of the current line
+  ;; Set cider-result-overlay-position to `at-point' to display results right after the expression evaluated
+  ;; Useful for evaluating nexsted expressions with `, e e'
+  (setq cider-result-overlay-position 'at-point)
+  ;;
+  ;;
+  ;; Pretty print in Clojure to use the Fast Idiomatic Pretty-Printer. This is approximately 5-10x faster than clojure.core/pprint
+  (setq cider-pprint-fn 'fipp)
+  ;;
+  ;;
+  ;; Indentation of function forms
+  ;; https://github.com/clojure-emacs/clojure-mode#indentation-of-function-forms
+  (setq clojure-indent-style 'align-arguments)
+  ;;
+  ;; Vertically align s-expressions
+  ;; https://github.com/clojure-emacs/clojure-mode#vertical-alignment
+  (setq clojure-align-forms-automatically t)
+  ;;
+  ;; Auto-indent code automatically
+  ;; https://emacsredux.com/blog/2016/02/07/auto-indent-your-code-with-aggressive-indent-mode/
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
   )
 
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (all-the-icons-ivy helm-cider-history helm-cider company-go treemacs zenburn-theme zen-and-art-theme yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify vterm volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit toxi-theme toc-org tide terminal-here tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection sql-indent spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sayid sass-mode rjsx-mode reverse-theme reveal-in-osx-finder restclient-helm restart-emacs rebecca-theme rainbow-delimiters railscasts-theme purple-haze-theme pug-mode professional-theme prettier-js popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pcre2el password-generator paradox ox-gfm overseer osx-trash osx-dictionary osx-clipboard orgit organic-green-theme org-ref org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme ob-restclient ob-http nodejs-repl noctilux-theme naquadah-theme nameless mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode link-hint light-soap-theme launchctl kaolin-themes json-navigator js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide impatient-mode ibuffer-projectile hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-rtags helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate google-c-style golden-ratio gnuplot gitignore-templates github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gist gh-md gandalf-theme fuzzy forge font-lock+ flyspell-correct-helm flycheck-ycmd flycheck-rtags flycheck-pos-tip flycheck-package flycheck-joker flycheck-elsa flycheck-clj-kondo flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme dotenv-mode doom-themes dockerfile-mode docker django-theme disaster diminish diff-hl devdocs darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cyberpunk-theme cpp-auto-include company-ycmd company-web company-tern company-rtags company-restclient company-reftex company-c-headers company-auctex column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu chocolate-theme cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme browse-at-remote birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
