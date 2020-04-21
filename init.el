@@ -235,8 +235,6 @@ values."
                          smyx
                          hc-zenburn
                          spacegray
-                         cyberpunk
-                         ujelly
                          odersky
                          doom-tomorrow-night
                          spacemacs-dark
